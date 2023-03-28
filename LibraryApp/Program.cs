@@ -22,16 +22,25 @@ static void BookRepostoryOnItemRemove(object? sender, Book e)
     Console.WriteLine($"Book remove => {e.Title}- Date:{DateTime.UtcNow} from  {sender?.GetType().Name}");
 }
 
-// ZROBIĆ KOPIĘ CLIENTREPOSITORY DLA AUDYTU DOT KLIENTA. (TAK JAK POWYŻEJ) (COFNĄĆ SIĘ DO DODANIA MENADŻERA W KURSIE)
-
 AddBooks(bookRepository);
-WriteToConsole(bookRepository);
+WriteAllToConsole(bookRepository);
 
 static void BookAdded(Book item)
 {
-
     Console.WriteLine($"{item.Title} added");
 }
+
+static void AddClients(IRepository<Client> bookRepository)
+{
+    var books = new[]
+    {
+        new Client { FirstName = "Sara" },
+        new Client { FirstName = "Maks" },
+    };
+
+    bookRepository.AddBatch(books);
+}
+
 
 static void AddBooks(IRepository<Book> clientRepository)
 {
@@ -47,7 +56,7 @@ static void AddBooks(IRepository<Book> clientRepository)
 
 
 
-static void WriteToConsole(IReadRepository<IEntity> repository)
+static void WriteAllToConsole(IReadRepository<IEntity> repository)
 {
     var items = repository.GetAll();
     foreach (var item in items)
@@ -55,6 +64,25 @@ static void WriteToConsole(IReadRepository<IEntity> repository)
         Console.WriteLine(item);
     }
 }
+
+
+
+
+
+
+//static void RemoveEntity(SqlRepository<Book> repository, int id)
+//{
+//    var itemToRemove = repository?.GetById(id);
+//    if (itemToRemove is not null)
+//    {
+//        repository?.Remove(itemToRemove);
+//        repository?.Save();
+//    }
+//    else
+//    {
+//        Console.WriteLine("There is no item to remove");
+//    }
+//}
 
 
 
