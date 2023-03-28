@@ -41,7 +41,6 @@ static void AddClients(IRepository<Client> bookRepository)
     bookRepository.AddBatch(books);
 }
 
-
 static void AddBooks(IRepository<Book> clientRepository)
 {
     var clients = new[]
@@ -54,8 +53,6 @@ static void AddBooks(IRepository<Book> clientRepository)
     clientRepository.AddBatch(clients);
 }
 
-
-
 static void WriteAllToConsole(IReadRepository<IEntity> repository)
 {
     var items = repository.GetAll();
@@ -67,8 +64,7 @@ static void WriteAllToConsole(IReadRepository<IEntity> repository)
 
 
 
-
-
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 //static void RemoveEntity(SqlRepository<Book> repository, int id)
 //{

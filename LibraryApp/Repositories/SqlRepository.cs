@@ -3,10 +3,7 @@ using LibraryApp.Entities;
 
 namespace LibraryApp.Repositories
 {
-    
-
     public class SqlRepository<T>: IRepository<T> where T : class, IEntity, new()
-   
     {
         private readonly DbContext _dbContext;
         private readonly DbSet<T> _dbSet;
@@ -17,7 +14,6 @@ namespace LibraryApp.Repositories
             _dbContext = dbContext;
             _dbSet = _dbContext.Set<T>();
             _itemAddedCallback = itemAddedCallback;
-
         }
 
         public event EventHandler<T>? ItemAdded;
@@ -48,7 +44,5 @@ namespace LibraryApp.Repositories
         {
             _dbContext.SaveChanges();
         }
-
-
     }
 }
